@@ -65,7 +65,15 @@ export async function seedDatabase() {
     department: 'Open Source Club',
   });
 
-  console.log('[Seed] Created 3 users: 1 Admin, 2 Students.');
+  const student3 = await User.create({
+    name: 'Kavya Verma',
+    email: 'student3@sst.scaler.com',
+    passwordHash: studentHash,
+    role: 'student',
+    department: 'AI-ML Club',
+  });
+
+  console.log('[Seed] Created 4 users: 1 Admin, 3 Students.');
 
   // 3. Create 8 Varied Resources
   const resourcesData = [
@@ -318,7 +326,7 @@ export async function seedDatabase() {
       status: 'approved',
     }),
     makeBooking({
-      user: student1,
+      user: student3,
       resource: iotLab,
       dayOffset: 2,
       startTime: '10:00',
@@ -327,7 +335,7 @@ export async function seedDatabase() {
       status: 'approved',
     }),
     makeBooking({
-      user: student2,
+      user: student3,
       resource: studyPod,
       dayOffset: 2,
       startTime: '09:00',
@@ -340,7 +348,7 @@ export async function seedDatabase() {
   // Pending Bookings requiring Admin Review (for the Approval Queue)
   bookingsToCreate.push(
     makeBooking({
-      user: student1,
+      user: student3,
       resource: roboticsLab,
       dayOffset: 2,
       startTime: '15:00',
@@ -360,7 +368,7 @@ export async function seedDatabase() {
       expiresAt: new Date(now.getTime() + 18 * 60 * 60 * 1000),
     }),
     makeBooking({
-      user: student1,
+      user: student3,
       resource: laserCutter,
       dayOffset: 3,
       startTime: '14:00',
@@ -370,7 +378,7 @@ export async function seedDatabase() {
       expiresAt: new Date(now.getTime() + 22 * 60 * 60 * 1000),
     }),
     makeBooking({
-      user: student2,
+      user: student3,
       resource: roboticsLab,
       dayOffset: 4,
       startTime: '10:00',
@@ -384,7 +392,7 @@ export async function seedDatabase() {
   // Later Future Approved Bookings (Day 4 to 7)
   bookingsToCreate.push(
     makeBooking({
-      user: student1,
+      user: student3,
       resource: thinkTank,
       dayOffset: 4,
       startTime: '16:00',
@@ -393,7 +401,7 @@ export async function seedDatabase() {
       status: 'approved',
     }),
     makeBooking({
-      user: student2,
+      user: student3,
       resource: badmintonCourt,
       dayOffset: 5,
       startTime: '07:00',
@@ -402,7 +410,7 @@ export async function seedDatabase() {
       status: 'approved',
     }),
     makeBooking({
-      user: student1,
+      user: student3,
       resource: tennisCourt,
       dayOffset: 5,
       startTime: '17:00',
@@ -411,7 +419,7 @@ export async function seedDatabase() {
       status: 'approved',
     }),
     makeBooking({
-      user: student2,
+      user: student3,
       resource: iotLab,
       dayOffset: 6,
       startTime: '13:00',
@@ -420,7 +428,7 @@ export async function seedDatabase() {
       status: 'approved',
     }),
     makeBooking({
-      user: student1,
+      user: student3,
       resource: studyPod,
       dayOffset: 6,
       startTime: '11:00',

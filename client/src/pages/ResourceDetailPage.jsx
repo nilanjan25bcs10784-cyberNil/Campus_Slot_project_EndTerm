@@ -31,12 +31,24 @@ function getLocalDateString(offsetDays = 0) {
   return `${year}-${month}-${day}`;
 }
 
+function getInitialDateString() {
+  const d = new Date();
+  // If late evening (after 9 PM IST), default to Tomorrow when facilities are open
+  if (d.getHours() >= 21) {
+    d.setDate(d.getDate() + 1);
+  }
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 export function ResourceDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [resource, setResource] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(() => getLocalDateString(0));
+  const [selectedDate, setSelectedDate] = useState(getInitialDateString);
   const [slots, setSlots] = useState([]);
   const [loadingResource, setLoadingResource] = useState(true);
   const [loadingSlots, setLoadingSlots] = useState(true);

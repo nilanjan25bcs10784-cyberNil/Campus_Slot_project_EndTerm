@@ -120,6 +120,17 @@ export async function getResourceAvailability(resourceId, dateStr, currentUserId
     const slotStartAt = createUtcDate(dateStr, slotStartStr);
     const slotEndAt = createUtcDate(dateStr, slotEndStr);
 
+    // If slot start has already passed in real-time, mark as blocked (not bookable)
+    const now = new Date();
+    if (slotStartAt <= now) {
+      slots.push({
+        startTime: slotStartStr,
+        endTime: slotEndStr,
+        state: 'blocked',
+      });
+      continue;
+    }
+
     // Check blocked window
     const isBlocked = blockedWindows.some(
       (bw) => slotStartAt < bw.endAt && slotEndAt > bw.startAt

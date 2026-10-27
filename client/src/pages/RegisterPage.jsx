@@ -12,25 +12,38 @@ export function RegisterPage() {
     name: '',
     email: '',
     password: '',
-    department: 'Computer Science & Engineering',
+    department: 'Open Source Club',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const departments = [
+  const clubs = [
+    'E-cell Club',
+    'Open Source Club',
+    'CP Club',
+    'Robotics Club',
+    'AI-ML Club',
+  ];
+
+  const academicDepartments = [
     'Computer Science & Engineering',
     'Electronics & Communication',
     'Mechanical Engineering',
-    'Electrical & Electronics',
-    'Civil Engineering',
-    'Design & Architecture',
-    'Biotechnology',
-    'Campus Student Clubs & Societies',
+    'Information Technology',
   ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    // Pre-flight domain check
+    if (!formData.email.toLowerCase().endsWith('@sst.scaler.com')) {
+      const msg = 'Only @sst.scaler.com email addresses are allowed to register.';
+      setError(msg);
+      toast.error(msg);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -86,32 +99,44 @@ export function RegisterPage() {
 
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                College Email
+                College Email (@sst.scaler.com only)
               </label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="name@campusslot.test"
+                placeholder="yourname@sst.scaler.com"
                 className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
               />
+              <span className="text-[11px] text-slate-400 mt-1 block">
+                Must end with <strong>@sst.scaler.com</strong>
+              </span>
             </div>
 
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                Department / Club
+                Club / Department
               </label>
               <select
                 value={formData.department}
                 onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                 className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
               >
-                {departments.map((dept) => (
-                  <option key={dept} value={dept}>
-                    {dept}
-                  </option>
-                ))}
+                <optgroup label="Campus Clubs">
+                  {clubs.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Academic Departments">
+                  {academicDepartments.map((dept) => (
+                    <option key={dept} value={dept}>
+                      {dept}
+                    </option>
+                  ))}
+                </optgroup>
               </select>
             </div>
 

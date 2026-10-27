@@ -158,11 +158,11 @@ Open your browser at `http://localhost:5173`.
 
 | Role | Email | Password | Access Capabilities |
 | :--- | :--- | :--- | :--- |
-| **Faculty Admin** | `admin@campusslot.test` | `Admin@123` | Full access: Approvals queue, facility manager, maintenance blocks, utilization analytics |
-| **Student 1** | `student1@campusslot.test` | `Student@123` | Facility discovery, booking slots, check-ins, waitlisting |
-| **Student 2** | `student2@campusslot.test` | `Student@123` | Alternative student account for testing collisions, waitlist promotion, and attendance |
+| **Faculty Admin** | `admin@sst.scaler.com` | `Admin@123` | Full access: Approvals queue, facility manager, maintenance blocks, utilization analytics |
+| **Student 1** | `student1@sst.scaler.com` | `Student@123` | Robotics Club: Facility discovery, booking slots, check-ins, waitlisting |
+| **Student 2** | `student2@sst.scaler.com` | `Student@123` | Open Source Club: Testing collisions, waitlist promotion, and attendance |
 
-*(The login screen also provides 1-click demo autofill buttons).*
+*(Registration is restricted strictly to `@sst.scaler.com` student and faculty accounts. Supported campus clubs include **E-cell Club**, **Open Source Club**, **CP Club**, **Robotics Club**, and **AI-ML Club**. The login screen also provides 1-click demo autofill buttons).*
 
 ---
 

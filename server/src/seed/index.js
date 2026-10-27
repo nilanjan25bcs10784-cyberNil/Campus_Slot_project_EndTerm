@@ -43,7 +43,7 @@ export async function seedDatabase() {
 
   const admin = await User.create({
     name: 'Dr. Ramesh Sharma (Admin)',
-    email: 'admin@campusslot.test',
+    email: 'admin@sst.scaler.com',
     passwordHash: adminHash,
     role: 'admin',
     department: 'Campus Facilities Administration',
@@ -51,18 +51,18 @@ export async function seedDatabase() {
 
   const student1 = await User.create({
     name: 'Aarav Patel',
-    email: 'student1@campusslot.test',
+    email: 'student1@sst.scaler.com',
     passwordHash: studentHash,
     role: 'student',
-    department: 'Computer Science & Engineering',
+    department: 'Robotics Club',
   });
 
   const student2 = await User.create({
     name: 'Priya Sundaram',
-    email: 'student2@campusslot.test',
+    email: 'student2@sst.scaler.com',
     passwordHash: studentHash,
     role: 'student',
-    department: 'Electronics & Communication',
+    department: 'Open Source Club',
   });
 
   console.log('[Seed] Created 3 users: 1 Admin, 2 Students.');
@@ -495,9 +495,9 @@ export async function seedDatabase() {
   console.log('----------------------------------------------------');
   console.log('✅ DATABASE SEED COMPLETE!');
   console.log('Demo Credentials:');
-  console.log('  Admin:   admin@campusslot.test    / Admin@123');
-  console.log('  Student: student1@campusslot.test / Student@123');
-  console.log('  Student: student2@campusslot.test / Student@123');
+  console.log('  Admin:   admin@sst.scaler.com    / Admin@123');
+  console.log('  Student: student1@sst.scaler.com / Student@123');
+  console.log('  Student: student2@sst.scaler.com / Student@123');
   console.log('----------------------------------------------------');
 }
 

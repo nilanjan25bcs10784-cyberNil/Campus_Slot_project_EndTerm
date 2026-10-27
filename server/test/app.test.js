@@ -80,14 +80,14 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
       .post('/api/auth/register')
       .send({
         name: 'Test Student',
-        email: 'student@campusslot.test',
+        email: 'student@sst.scaler.com',
         password: 'Password@123',
-        department: 'Computer Science',
+        department: 'CP Club',
       });
 
     expect(regRes.status).toBe(201);
     expect(regRes.body.data).toHaveProperty('token');
-    expect(regRes.body.data.user.email).toBe('student@campusslot.test');
+    expect(regRes.body.data.user.email).toBe('student@sst.scaler.com');
     expect(regRes.body.data.user.role).toBe('student');
 
     const token = regRes.body.data.token;
@@ -98,14 +98,14 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
       .set('Authorization', `Bearer ${token}`);
 
     expect(meRes.status).toBe(200);
-    expect(meRes.body.data.user.email).toBe('student@campusslot.test');
+    expect(meRes.body.data.user.email).toBe('student@sst.scaler.com');
     expect(meRes.body.data.user.name).toBe('Test Student');
 
     // 3. Login with correct password
     const loginRes = await request(app)
       .post('/api/auth/login')
       .send({
-        email: 'student@campusslot.test',
+        email: 'student@sst.scaler.com',
         password: 'Password@123',
       });
 
@@ -116,7 +116,7 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
     const wrongPassRes = await request(app)
       .post('/api/auth/login')
       .send({
-        email: 'student@campusslot.test',
+        email: 'student@sst.scaler.com',
         password: 'WrongPassword!',
       });
 
@@ -128,13 +128,26 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
       .post('/api/auth/register')
       .send({
         name: 'Another User',
-        email: 'student@campusslot.test',
+        email: 'student@sst.scaler.com',
         password: 'Password@123',
         department: 'Information Tech',
       });
 
     expect(dupRes.status).toBe(409);
     expect(dupRes.body.error.code).toBe('EMAIL_ALREADY_EXISTS');
+
+    // 6. Non-sst.scaler.com email rejection -> 400
+    const nonSstRes = await request(app)
+      .post('/api/auth/register')
+      .send({
+        name: 'External User',
+        email: 'external@gmail.com',
+        password: 'Password@123',
+        department: 'External',
+      });
+
+    expect(nonSstRes.status).toBe(400);
+    expect(nonSstRes.body.error.code).toBe('VALIDATION_ERROR');
   });
 
   // Test 2: Overlapping booking -> 409
@@ -157,7 +170,7 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
     // Register User 1
     const user1Res = await request(app).post('/api/auth/register').send({
       name: 'User One',
-      email: 'u1@campusslot.test',
+      email: 'u1@sst.scaler.com',
       password: 'Password@123',
       department: 'CS',
     });
@@ -166,7 +179,7 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
     // Register User 2
     const user2Res = await request(app).post('/api/auth/register').send({
       name: 'User Two',
-      email: 'u2@campusslot.test',
+      email: 'u2@sst.scaler.com',
       password: 'Password@123',
       department: 'Mech',
     });
@@ -226,7 +239,7 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
     for (let i = 1; i <= 5; i++) {
       const reg = await request(app).post('/api/auth/register').send({
         name: `Student Racer ${i}`,
-        email: `racer${i}@campusslot.test`,
+        email: `racer${i}@sst.scaler.com`,
         password: 'Password@123',
         department: 'Sports',
       });
@@ -279,7 +292,7 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
 
     const user1Res = await request(app).post('/api/auth/register').send({
       name: 'Student Owner',
-      email: 'owner@campusslot.test',
+      email: 'owner@sst.scaler.com',
       password: 'Password@123',
       department: 'CS',
     });
@@ -287,7 +300,7 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
 
     const user2Res = await request(app).post('/api/auth/register').send({
       name: 'Student Intruder',
-      email: 'intruder@campusslot.test',
+      email: 'intruder@sst.scaler.com',
       password: 'Password@123',
       department: 'EE',
     });
@@ -344,18 +357,18 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
     // Student A (Primary Booker)
     const userARes = await request(app).post('/api/auth/register').send({
       name: 'Student A',
-      email: 'studentA@campusslot.test',
+      email: 'studentA@sst.scaler.com',
       password: 'Password@123',
-      department: 'Robotics',
+      department: 'Robotics Club',
     });
     const tokenA = userARes.body.data.token;
 
     // Student B (Waitlisted)
     const userBRes = await request(app).post('/api/auth/register').send({
       name: 'Student B',
-      email: 'studentB@campusslot.test',
+      email: 'studentB@sst.scaler.com',
       password: 'Password@123',
-      department: 'Robotics',
+      department: 'Robotics Club',
     });
     const tokenB = userBRes.body.data.token;
     const studentBId = userBRes.body.data.user.id;
@@ -439,9 +452,9 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
 
     const userRes = await request(app).post('/api/auth/register').send({
       name: 'Rule Tester',
-      email: 'rules@campusslot.test',
+      email: 'rules@sst.scaler.com',
       password: 'Password@123',
-      department: 'ECE',
+      department: 'AI-ML Club',
     });
     const token = userRes.body.data.token;
 
@@ -492,9 +505,9 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
   it('7. Student non-admin hitting admin routes receives 403 Forbidden', async () => {
     const studentRes = await request(app).post('/api/auth/register').send({
       name: 'Regular Student',
-      email: 'regular@campusslot.test',
+      email: 'regular@sst.scaler.com',
       password: 'Password@123',
-      department: 'Civil',
+      department: 'Open Source Club',
     });
     const studentToken = studentRes.body.data.token;
 
@@ -531,9 +544,9 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
 
     const userRes = await request(app).post('/api/auth/register').send({
       name: 'Active Booker',
-      email: 'cap@campusslot.test',
+      email: 'cap@sst.scaler.com',
       password: 'Password@123',
-      department: 'Management',
+      department: 'E-cell Club',
     });
     const token = userRes.body.data.token;
 

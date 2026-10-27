@@ -65,21 +65,21 @@ export function LoginPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <button
               type="button"
-              onClick={() => fillDemo('admin@campusslot.test', 'Admin@123')}
+              onClick={() => fillDemo('admin@sst.scaler.com', 'Admin@123')}
               className="py-1.5 px-2 bg-white hover:bg-indigo-100/50 text-indigo-800 font-semibold rounded-lg border border-indigo-200 text-center transition shadow-sm"
             >
               👑 Faculty Admin
             </button>
             <button
               type="button"
-              onClick={() => fillDemo('student1@campusslot.test', 'Student@123')}
+              onClick={() => fillDemo('student1@sst.scaler.com', 'Student@123')}
               className="py-1.5 px-2 bg-white hover:bg-indigo-100/50 text-indigo-800 font-semibold rounded-lg border border-indigo-200 text-center transition shadow-sm"
             >
               🎓 Student 1
             </button>
             <button
               type="button"
-              onClick={() => fillDemo('student2@campusslot.test', 'Student@123')}
+              onClick={() => fillDemo('student2@sst.scaler.com', 'Student@123')}
               className="py-1.5 px-2 bg-white hover:bg-indigo-100/50 text-indigo-800 font-semibold rounded-lg border border-indigo-200 text-center transition shadow-sm"
             >
               🎓 Student 2
@@ -99,14 +99,14 @@ export function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                Campus Email
+                Campus Email (@sst.scaler.com)
               </label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@campusslot.test"
+                placeholder="you@sst.scaler.com"
                 className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
               />
             </div>

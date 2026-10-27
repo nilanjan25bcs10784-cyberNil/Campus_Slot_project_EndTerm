@@ -13,6 +13,12 @@ import {
 } from '../src/models/index.js';
 import { formatKolkataDate } from '../src/utils/time.js';
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 let mongod;
 let app;
 
@@ -28,7 +34,11 @@ beforeAll(async () => {
   process.env.JWT_SECRET = 'test_secret_for_vitest_supertest_suite_12345';
   process.env.TZ = 'Asia/Kolkata';
 
-  mongod = await MongoMemoryServer.create();
+  mongod = await MongoMemoryServer.create({
+    binary: {
+      downloadDir: path.resolve(__dirname, '../node_modules/.cache/mongodb-memory-server'),
+    },
+  });
   const uri = mongod.getUri();
   await mongoose.connect(uri, { autoIndex: true });
 
@@ -41,7 +51,7 @@ beforeAll(async () => {
   ]);
 
   app = createApp();
-});
+}, 600000);
 
 afterAll(async () => {
   await mongoose.disconnect();

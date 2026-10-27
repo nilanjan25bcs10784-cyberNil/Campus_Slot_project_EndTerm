@@ -4,9 +4,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
-    testTimeout: 60000,
-    hookTimeout: 60000,
+    testTimeout: 120000,
+    hookTimeout: 600000, // 10 minutes for binary download
     teardownTimeout: 60000,
-    fileParallelism: false, // Ensure sequential test runs against in-memory mongodb
+    fileParallelism: false,
   },
 });

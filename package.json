@@ -1,0 +1,24 @@
+{
+  "name": "campusslot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CampusSlot - Campus Resource Reservation & Conflict Resolution System",
+  "scripts": {
+    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "start": "npm start --prefix server",
+    "seed": "npm run seed --prefix server",
+    "test": "npm test --prefix server",
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server"
+  },
+  "keywords": [
+    "campus",
+    "booking",
+    "resource-reservation",
+    "mern",
+    "concurrency-control",
+    "college-project"
+  ],
+  "author": "CampusSlot Team",
+  "license": "MIT"
+}

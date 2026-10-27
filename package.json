@@ -4,6 +4,7 @@
   "private": true,
   "description": "CampusSlot - Campus Resource Reservation & Conflict Resolution System",
   "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue.bold,green.bold\" \"npm run server\" \"npm run client\"",
     "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
     "start": "npm start --prefix server",
     "seed": "npm run seed --prefix server",
@@ -20,5 +21,8 @@
     "college-project"
   ],
   "author": "CampusSlot Team",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }

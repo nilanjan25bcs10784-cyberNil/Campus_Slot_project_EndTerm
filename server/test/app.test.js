@@ -136,18 +136,30 @@ describe('CampusSlot Automated Test Suite (Spec Compliance)', () => {
     expect(dupRes.status).toBe(409);
     expect(dupRes.body.error.code).toBe('EMAIL_ALREADY_EXISTS');
 
-    // 6. Non-sst.scaler.com email rejection -> 400
-    const nonSstRes = await request(app)
+    // 6. Invalid email format rejection -> 400 VALIDATION_ERROR
+    const invalidEmailRes = await request(app)
       .post('/api/auth/register')
       .send({
-        name: 'External User',
-        email: 'external@gmail.com',
+        name: 'Invalid Email User',
+        email: 'not-an-email-at-all',
         password: 'Password@123',
         department: 'External',
       });
 
-    expect(nonSstRes.status).toBe(400);
-    expect(nonSstRes.body.error.code).toBe('VALIDATION_ERROR');
+    expect(invalidEmailRes.status).toBe(400);
+    expect(invalidEmailRes.body.error.code).toBe('VALIDATION_ERROR');
+
+    // 7. General email domains (like @gmail.com) succeed -> 201
+    const gmailRes = await request(app)
+      .post('/api/auth/register')
+      .send({
+        name: 'Gmail Student',
+        email: 'student.anywhere@gmail.com',
+        password: 'Password@123',
+        department: 'Open Source Club',
+      });
+    expect(gmailRes.status).toBe(201);
+    expect(gmailRes.body.data.user.email).toBe('student.anywhere@gmail.com');
   });
 
   // Test 2: Overlapping booking -> 409

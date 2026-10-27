@@ -35,15 +35,6 @@ export function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
-    // Pre-flight domain check
-    if (!formData.email.toLowerCase().endsWith('@sst.scaler.com')) {
-      const msg = 'Only @sst.scaler.com email addresses are allowed to register.';
-      setError(msg);
-      toast.error(msg);
-      return;
-    }
-
     setLoading(true);
 
     try {
@@ -99,19 +90,16 @@ export function RegisterPage() {
 
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                College Email (@sst.scaler.com only)
+                Email Address
               </label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="yourname@sst.scaler.com"
+                placeholder="student@campus.edu or yourname@example.com"
                 className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
               />
-              <span className="text-[11px] text-slate-400 mt-1 block">
-                Must end with <strong>@sst.scaler.com</strong>
-              </span>
             </div>
 
             <div>

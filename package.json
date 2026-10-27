@@ -5,7 +5,7 @@
   "description": "CampusSlot - Campus Resource Reservation & Conflict Resolution System",
   "scripts": {
     "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue.bold,green.bold\" \"npm run server\" \"npm run client\"",
-    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "build": "npm install --prefix server && npm install --include=dev --prefix client && npm run build --prefix client",
     "start": "npm start --prefix server",
     "seed": "npm run seed --prefix server",
     "test": "npm test --prefix server",

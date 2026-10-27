@@ -236,4 +236,4 @@ Generative AI was utilized as an assistive pair-programmer to accelerate boilerp
 - **Configuration**: Declaratively defined in [`render.yaml`](file:///c:/Users/ghorp/Downloads/MERN%20END%20TERM%20PROJECT/render.yaml).
 - **Build Command**: `npm run build`
 - **Start Command**: `npm start`
-- **Live Deployment URL**: *(Deployment placeholder: https://campusslot.onrender.com)*
+- **Live Deployment URL**: [https://campusslot-endterm.onrender.com](https://campusslot-endterm.onrender.com)
